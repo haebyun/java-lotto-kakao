@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.util.LottoRules;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +38,6 @@ public class LottoStatistics {
     }
 
     public double profitRate() {
-        int purchaseAmountValue = purchaseAmount.getLottoCount() * LottoRules.PURCHASE_UNIT;
-        return (double) calculateTotalPrize() / purchaseAmountValue;
+        return purchaseAmount.calculateProfitRate(calculateTotalPrize());
     }
 }

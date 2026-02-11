@@ -25,4 +25,13 @@ public class PurchaseAmountTest {
         assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(0));
         assertThrows(IllegalArgumentException.class, () -> new PurchaseAmount(-LottoRules.PURCHASE_UNIT));
     }
+
+    @DisplayName("총 당첨금 기준으로 수익률을 계산한다.")
+    @Test
+    void calculateProfitRateTest() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(3000);
+        long totalPrize = 6000L;
+
+        assertEquals(2.0, purchaseAmount.calculateProfitRate(totalPrize));
+    }
 }

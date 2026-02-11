@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.util.LottoNumberGenerator;
-import lotto.util.LottoRules;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +44,7 @@ class LottoMachineTest {
         assertEquals(1L, lottoStatistics.countOf(LottoResult.SECOND));
         assertEquals(1L, lottoStatistics.countOf(LottoResult.FIFTH));
         int totalPrize = LottoResult.FIRST.getPrize() + LottoResult.SECOND.getPrize() + LottoResult.FIFTH.getPrize();
-        int purchaseAmountValue = purchaseAmount.getLottoCount() * LottoRules.PURCHASE_UNIT;
-        double profitRate = (double) totalPrize / purchaseAmountValue;
+        double profitRate = purchaseAmount.calculateProfitRate(totalPrize);
         assertEquals(profitRate, lottoStatistics.profitRate());
     }
 }

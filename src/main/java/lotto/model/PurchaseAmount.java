@@ -29,6 +29,10 @@ public class PurchaseAmount {
         return amount / LottoRules.PURCHASE_UNIT;
     }
 
+    public double calculateProfitRate(long totalPrize) {
+        return (double) totalPrize / amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

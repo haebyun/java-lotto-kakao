@@ -31,7 +31,7 @@ class LottosTest {
         assertEquals(0L, lottoStatistics.countOf(LottoResult.MISS));
         int totalPrize = LottoResult.FIRST.getPrize() + LottoResult.SECOND.getPrize() + LottoResult.FIFTH.getPrize();
         assertEquals(totalPrize, lottoStatistics.calculateTotalPrize());
-        double profitRate = (double) totalPrize / 3000;
+        double profitRate = purchaseAmount.calculateProfitRate(totalPrize);
         assertEquals(profitRate, lottoStatistics.profitRate());
     }
 }
