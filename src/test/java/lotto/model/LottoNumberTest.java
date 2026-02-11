@@ -3,6 +3,8 @@ package lotto.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.api.Test;
 
 public class LottoNumberTest {
@@ -15,15 +17,17 @@ public class LottoNumberTest {
         assertSame(lottoNumber, sameLottoNumber);
     }
 
-    @DisplayName("로또번호는 1~45 사이의 숫자만을 입력받는다.")
-    @Test
-    void validLottoNumberTest() {
-        assertDoesNotThrow(() -> LottoNumber.of(44));
+    @DisplayName("로또번호는 1~45 사이의 숫자에선 정상 작동한다.")
+    @ParameterizedTest(name = "유효 경계값 {0}")
+    @ValueSource(ints = {1, 45})
+    void validBoundaryLottoNumberTest(int number) {
+        assertDoesNotThrow(() -> LottoNumber.of(number));
     }
 
-    @DisplayName("로또번호는 1~45 사이의 숫자만을 입력받는다.")
-    @Test
-    void invalidLottoNumberTest() {
-        assertThrows(IllegalArgumentException.class, () -> LottoNumber.of(46));
+    @DisplayName("로또번호는 1~45 사이의 숫자에선 예외가 발생한다.")
+    @ParameterizedTest(name = "유효하지 않은 경계값 {0}")
+    @ValueSource(ints = {0, 46})
+    void invalidBoundaryLottoNumberTest(int number) {
+        assertThrows(IllegalArgumentException.class, () -> LottoNumber.of(number));
     }
 }
