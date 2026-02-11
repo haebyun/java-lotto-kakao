@@ -42,6 +42,10 @@ public enum LottoResult {
         return prize;
     }
 
+    public long calculatePrizeFor(long count) {
+        return prize * count;
+    }
+
     public boolean includesBonusMatch() {
         return includesBonusMatch;
     }

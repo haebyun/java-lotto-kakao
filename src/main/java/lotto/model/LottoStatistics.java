@@ -35,7 +35,7 @@ public class LottoStatistics {
 
     public long calculateTotalPrize() {
         return counts.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().calculatePrizeFor(entry.getValue()))
                 .sum();
     }
 
