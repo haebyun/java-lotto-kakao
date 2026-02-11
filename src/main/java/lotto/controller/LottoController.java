@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
-import lotto.model.LottoNumber;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -34,16 +33,11 @@ public class LottoController {
 
     private WinningLotto readValidWinningLotto() {
         Lotto winningNumbers = readValidWinningNumbers();
-        LottoNumber bonusNumber = readValidBonusNumber(winningNumbers);
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return readUntilValid(() -> new WinningLotto(winningNumbers, inputView.readBonusNumber()));
     }
 
     private Lotto readValidWinningNumbers() {
         return readUntilValid(inputView::readWinningNumbers);
-    }
-
-    private LottoNumber readValidBonusNumber(Lotto winningNumbers) {
-        return readUntilValid(() -> validateBonusNumber(winningNumbers, inputView.readBonusNumber()));
     }
 
     private <T> T readUntilValid(Supplier<T> reader) {
@@ -61,10 +55,5 @@ public class LottoController {
             outputView.printError(exception.getMessage());
             return Optional.empty();
         }
-    }
-
-    private LottoNumber validateBonusNumber(Lotto winningNumbers, LottoNumber bonusNumber) {
-        new WinningLotto(winningNumbers, bonusNumber);
-        return bonusNumber;
     }
 }
