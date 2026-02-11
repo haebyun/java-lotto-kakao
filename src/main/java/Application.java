@@ -1,5 +1,4 @@
 import lotto.controller.LottoController;
-import lotto.util.RandomLottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,6 +13,6 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView(scanner);
         OutputView outputView = new OutputView();
-        return new LottoController(inputView, outputView, new RandomLottoNumberGenerator());
+        return new LottoController(inputView, outputView);
     }
 }

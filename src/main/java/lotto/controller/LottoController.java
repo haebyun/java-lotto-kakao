@@ -5,7 +5,6 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoNumber;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
-import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,17 +14,15 @@ import java.util.function.Supplier;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoNumberGenerator lottoNumberGenerator) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public void run() {
         PurchaseAmount purchaseAmount = readValidPurchaseAmount();
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, lottoNumberGenerator);
+        LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
         outputView.printPurchasedLottos(lottoMachine.getLottos().values());
         WinningLotto winningLotto = readValidWinningLotto();
         outputView.printStatistics(lottoMachine.calculateResult(winningLotto));
