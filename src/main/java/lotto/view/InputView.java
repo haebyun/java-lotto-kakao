@@ -35,7 +35,7 @@ public class InputView {
 
     public LottoNumber readBonusNumber() {
         System.out.println(BONUS_NUMBER_PROMPT);
-        return new LottoNumber(parseNumber(scanner.nextLine()));
+        return LottoNumber.of(parseNumber(scanner.nextLine()));
     }
 
     private int parseNumber(String value) {

@@ -19,7 +19,7 @@ class LottosTest {
         ));
         WinningLotto winningLotto = new WinningLotto(
                 Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoNumber(7)
+                LottoNumber.of(7)
         );
         PurchaseAmount purchaseAmount = new PurchaseAmount(3000);
 

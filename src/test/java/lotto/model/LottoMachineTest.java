@@ -34,7 +34,7 @@ class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount, lottoNumberGenerator);
         WinningLotto winningLotto = new WinningLotto(
                 Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoNumber(7)
+                LottoNumber.of(7)
         );
 
         LottoStatistics lottoStatistics = lottoMachine.calculateResult(winningLotto);

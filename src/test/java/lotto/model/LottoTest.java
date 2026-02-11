@@ -12,7 +12,7 @@ public class LottoTest {
     @Test
     void validLottoTest() {
         assertDoesNotThrow(() -> new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
-                        .map(LottoNumber::new)
+                        .map(LottoNumber::of)
                         .toList()
                 )
         );
@@ -22,13 +22,13 @@ public class LottoTest {
     @Test
     void invalidLottoTest() {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(Stream.of(1, 2, 3, 4, 5, 6, 7)
-                        .map(LottoNumber::new)
+                        .map(LottoNumber::of)
                         .toList()
                 )
         );
 
         assertThrows(IllegalArgumentException.class, () -> new Lotto(Stream.of(1, 2, 3, 4, 5, 5)
-                        .map(LottoNumber::new)
+                        .map(LottoNumber::of)
                         .toList()
                 )
         );

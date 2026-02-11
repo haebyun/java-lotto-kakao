@@ -16,9 +16,9 @@ public class WinningLottoTest {
     @Test
     void validLottoNumberTest() {
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
-                .map(LottoNumber::new)
+                .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonusNumber = new LottoNumber(7);
+        LottoNumber bonusNumber = LottoNumber.of(7);
 
         assertDoesNotThrow(() -> new WinningLotto(lotto, bonusNumber));
     }
@@ -27,9 +27,9 @@ public class WinningLottoTest {
     @Test
     void invalidLottoNumberTest() {
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
-                .map(LottoNumber::new)
+                .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonusNumber = new LottoNumber(6);
+        LottoNumber bonusNumber = LottoNumber.of(6);
 
         assertThrows(IllegalArgumentException.class, () -> new WinningLotto(lotto, bonusNumber));
     }
@@ -39,13 +39,13 @@ public class WinningLottoTest {
     @MethodSource("lottoResultCases")
     void calculateResult_allRanks(LottoResult expected, List<Integer> userNumbers) {
         Lotto winning = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
-                .map(LottoNumber::new)
+                .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonus = new LottoNumber(7);
+        LottoNumber bonus = LottoNumber.of(7);
         WinningLotto winningLotto = new WinningLotto(winning, bonus);
 
         Lotto userLotto = new Lotto(userNumbers.stream()
-                .map(LottoNumber::new)
+                .map(LottoNumber::of)
                 .toList());
 
         LottoResult actual = winningLotto.calculateResult(userLotto);

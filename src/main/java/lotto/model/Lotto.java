@@ -15,11 +15,11 @@ public class Lotto {
     }
 
     public static Lotto from(List<Integer> numbers) {
-        return new Lotto(numbers.stream().map(LottoNumber::new).toList());
+        return new Lotto(numbers.stream().map(LottoNumber::of).toList());
     }
 
     private void validate(List<LottoNumber> numbers) {
-        if(numbers.size() != LottoRules.LOTTO_SIZE) {
+        if (numbers.size() != LottoRules.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 하나의 로또는 6개의 로또 번호를 가져야 합니다.");
         }
 
