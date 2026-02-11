@@ -22,8 +22,9 @@ public final class RandomLottoNumberGenerator implements LottoNumberGenerator {
     }
 
     private List<Integer> createCandidates() {
-        return IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
+        return new ArrayList<>(IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
                 .boxed()
-                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+                .toList()
+        );
     }
 }
