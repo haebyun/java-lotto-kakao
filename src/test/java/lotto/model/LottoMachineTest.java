@@ -17,7 +17,7 @@ class LottoMachineTest {
         LottoNumberGenerator lottoNumberGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
         PurchaseAmount purchaseAmount = new PurchaseAmount(3000);
 
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, lottoNumberGenerator);
+        LottoMachine lottoMachine = LottoMachine.issue(purchaseAmount, lottoNumberGenerator);
 
         assertEquals(3, lottoMachine.getLottos().values().size());
     }
@@ -32,7 +32,7 @@ class LottoMachineTest {
         ));
         LottoNumberGenerator lottoNumberGenerator = generatedNumbers::removeFirst;
         PurchaseAmount purchaseAmount = new PurchaseAmount(3000);
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, lottoNumberGenerator);
+        LottoMachine lottoMachine = LottoMachine.issue(purchaseAmount, lottoNumberGenerator);
         WinningLotto winningLotto = new WinningLotto(
                 Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
                 LottoNumber.of(7)

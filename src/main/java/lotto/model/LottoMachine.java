@@ -10,20 +10,20 @@ public class LottoMachine {
     private final PurchaseAmount purchaseAmount;
     private final Lottos lottos;
 
-    public LottoMachine(PurchaseAmount purchaseAmount) {
-        this(purchaseAmount, new RandomLottoNumberGenerator());
-    }
-
-    public LottoMachine(PurchaseAmount purchaseAmount, LottoNumberGenerator generator) {
+    private LottoMachine(PurchaseAmount purchaseAmount, Lottos lottos) {
         this.purchaseAmount = purchaseAmount;
-        this.lottos = issueLottos(generator);
+        this.lottos = lottos;
     }
 
-    private Lottos issueLottos(LottoNumberGenerator generator) {
+    public static LottoMachine issue(PurchaseAmount purchaseAmount) {
+        return issue(purchaseAmount, new RandomLottoNumberGenerator());
+    }
+
+    public static LottoMachine issue(PurchaseAmount purchaseAmount, LottoNumberGenerator generator) {
         List<Lotto> issuedLottos = IntStream.range(0, purchaseAmount.getLottoCount())
                 .mapToObj(index -> Lotto.from(generator.generate()))
                 .toList();
-        return new Lottos(issuedLottos);
+        return new LottoMachine(purchaseAmount, new Lottos(issuedLottos));
     }
 
     public Lottos getLottos() {

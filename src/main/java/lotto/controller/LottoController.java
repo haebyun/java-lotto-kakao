@@ -21,7 +21,7 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = readValidPurchaseAmount();
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
+        LottoMachine lottoMachine = LottoMachine.issue(purchaseAmount);
         outputView.printPurchasedLottos(lottoMachine.getLottos().values());
         WinningLotto winningLotto = readValidWinningLotto();
         outputView.printStatistics(lottoMachine.calculateResult(winningLotto));
