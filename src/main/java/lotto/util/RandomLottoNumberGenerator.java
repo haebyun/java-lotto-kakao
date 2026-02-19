@@ -1,7 +1,5 @@
 package lotto.util;
 
-import lotto.model.Lotto;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,11 +10,11 @@ public final class RandomLottoNumberGenerator implements LottoNumberGenerator {
     private static final int MAX_LOTTO_NUMBER = 45;
 
     @Override
-    public List<Integer> generate() {
+    public List<Integer> generate(int requiredNumberCount) {
         List<Integer> candidates = createCandidates();
         Collections.shuffle(candidates);
         return candidates.stream()
-                .limit(Lotto.requiredNumberCount())
+                .limit(requiredNumberCount)
                 .sorted()
                 .toList();
     }
