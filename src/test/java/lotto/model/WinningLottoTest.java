@@ -56,22 +56,22 @@ public class WinningLottoTest {
     static Stream<Arguments> lottoResultCases() {
         return Stream.of(
                 // 1등: 6개 일치
-                Arguments.of(LottoResult.FIRST,  List.of(1, 2, 3, 4, 5, 6)),
+                Arguments.of(LottoResult.FIRST, List.of(1, 2, 3, 4, 5, 6)),
 
                 // 2등: 5개 일치 + 보너스
                 Arguments.of(LottoResult.SECOND, List.of(1, 2, 3, 4, 5, 7)),
 
                 // 3등: 5개 일치 (보너스 X)
-                Arguments.of(LottoResult.THIRD,  List.of(1, 2, 3, 4, 5, 8)),
+                Arguments.of(LottoResult.THIRD, List.of(1, 2, 3, 4, 5, 8)),
 
                 // 4등: 4개 일치
                 Arguments.of(LottoResult.FOURTH, List.of(1, 2, 3, 4, 8, 9)),
 
                 // 5등: 3개 일치
-                Arguments.of(LottoResult.FIFTH,  List.of(1, 2, 3, 8, 9, 10)),
+                Arguments.of(LottoResult.FIFTH, List.of(1, 2, 3, 8, 9, 10)),
 
                 // 꽝: 0개 일치 (예시)
-                Arguments.of(LottoResult.MISS,   List.of(8, 9, 10, 11, 12, 13))
+                Arguments.of(LottoResult.MISS, List.of(8, 9, 10, 11, 12, 13))
         );
     }
 }
