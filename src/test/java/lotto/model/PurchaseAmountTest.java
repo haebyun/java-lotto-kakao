@@ -33,4 +33,23 @@ public class PurchaseAmountTest {
 
         assertEquals(2.0, purchaseAmount.calculateProfitRate(totalPrize));
     }
+
+    @DisplayName("수동 구매 개수에 따라 자동 구매 개수를 계산한다.")
+    @Test
+    void calculateAutoLottoCountTest() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+        ManualLottoCount manualLottoCount = ManualLottoCount.from(2);
+
+        assertEquals(3, purchaseAmount.calculateAutoLottoCount(manualLottoCount));
+    }
+
+    @DisplayName("수동 구매 개수는 구매 가능한 개수 이하여야 한다.")
+    @Test
+    void invalidManualLottoCountTest() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+        ManualLottoCount manualLottoCount = ManualLottoCount.from(6);
+
+        assertThrows(IllegalArgumentException.class, () -> purchaseAmount.validateManualLottoCount(manualLottoCount));
+        assertThrows(IllegalArgumentException.class, () -> purchaseAmount.calculateAutoLottoCount(manualLottoCount));
+    }
 }
